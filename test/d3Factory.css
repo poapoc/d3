@@ -1,0 +1,130 @@
+﻿path {
+    stroke-width: 2;
+}
+
+.e-line,
+.e-line-legend,
+.sav-line {
+    stroke: #487cbb;
+    fill: none;
+}
+
+.s-line,
+.s-line-legend,
+.eav-line {
+    stroke: #c0504d;
+    fill: none;
+}
+
+g:hover .s-line,
+g:hover .s-line-legend,
+g:hover .eav-line,
+g:hover .e-line,
+g:hover .e-line-legend,
+g:hover .sav-line {
+    opacity: 1.0;
+}
+
+.sav-line {
+    stroke-dasharray: 10;
+    stroke-width: 1.5;
+}
+
+.eav-line {
+    stroke-dasharray: 10;
+    stroke-width: 1.5;
+}
+
+.s-line-legend,
+.e-line-legend {
+    stroke-width: 5;
+}
+
+.s-circle-legend {
+    fill: #c0504d;
+}
+
+g:hover .s-circle-legend,
+g:hover .e-circle-legend {
+    opacity: 1.0;
+}
+
+.e-circle-legend {
+    fill: #487cbb;
+}
+
+.x-axis-text {
+    text-anchor: end;
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.node-text {
+    font-family: '黑体';
+    font-size: 16px;
+    fill: #000;
+}
+
+.av-block {
+    stroke-width: 2;
+    fill: #fff;
+}
+
+.av-block-text {
+    fill: #000;
+    font-family: sans-serif;
+    font-size: 20px;
+}
+
+.axis path,
+.axis line {
+    fill: none;
+    stroke: grey;
+    stroke-width: 1;
+    shape-rendering: crispEdges;
+}
+
+svg {
+    margin: 0 auto;
+}
+
+.bar {
+    stroke-width: 1;
+}
+
+
+.av-line {
+    stroke-dasharray: 8;
+    stroke: #df5900;
+    stroke-width: 2;
+}
+
+.av-scoreBlock {
+    stroke: #88c9dc;
+    stroke-width: 1;
+    fill: #fff;
+    fill: url(#grad2);
+}
+
+.av-text {
+    fill: #000;
+    font-family: sans-serif;
+    font-size: 20px;
+}
+
+.scoreBar {
+    stroke-width: 1;
+    fill: url('#grad1');
+}
+
+.low-ellipse {
+    stroke: red;
+    stroke-width: 2;
+    fill: none;
+}
+
+.company-legend {
+    stroke:#df5900;
+    stroke-width:2;
+    stroke-dasharray: 5;
+}

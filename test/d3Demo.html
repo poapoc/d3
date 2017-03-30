@@ -1,0 +1,184 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Simple Graph</title>
+    <style type="text/css">
+        body {
+            font: 12px Arial;
+        }
+
+        path {
+            stroke: steelblue;
+            stroke-width: 2;
+            fill: none;
+        }
+
+        .axis path,
+        .axis line {
+            fill: none;
+            stroke: grey;
+            stroke-width: 1;
+            shape-rendering: crispEdges;
+        }
+
+        .grid .tick {
+            stroke: lightgrey;
+            opacity: 0.7;
+        }
+
+        .grid path {
+            stroke-width: 0;
+        }
+        .area {
+            fill: lightsteelblue;
+            stroke-width: 0;
+        }
+    </style>
+    <script type="text/javascript" src="d3.js"></script>
+    <script type="text/javascript" src="makeData.js"></script>
+</head>
+<body>
+
+    <div style="background-color: red; height: 200px; width: 800px; margin: 0 auto;"></div>
+
+    <script type="text/javascript">
+        //var selection = d3.selectAll('div');
+
+        //selection.transition().tween("text", function () {
+        //    var i = d3.interpolateRound(0, 10000);
+        //    return function (t) {
+        //        this.textContent = i(t);
+        //    };
+        //});
+
+
+        var margin = { top: 30, right: 80, bottom: 50, left: 80 };
+        var width = 1200 - margin.left - margin.right;
+        var height = 400 - margin.top - margin.bottom;
+
+        var x = d3.time.scale().range([0, width]);
+        var y = d3.scale.linear().range([height, 0]);
+        var y2 = d3.scale.linear().range([height, 0]);
+
+        //定义坐标轴
+        var xAxis = d3.svg.axis().scale(x).orient("bottom").ticks(50);
+        var yAxis = d3.svg.axis().scale(y).orient("left").ticks(20);
+        var y2Axis = d3.svg.axis().scale(y2).orient("right").ticks(20);
+
+        //定义填充区域
+        //var area = d3.svg.area()
+        //    .x(function(d) { return x(d.date); })
+        //    .y0(height)
+        //    //.y0(0)
+        //    .y1(function(d) { return y(d.close); });
+
+
+        var valueline = d3.svg.line()
+            .interpolate('linear')
+            .x(function (d) { return x(d.date); })
+            .y(function (d) { return y(d.close); });
+
+        //定义线条2
+        var valueline2 = d3.svg.line()
+            .interpolate("linear")
+            .x(function(d) {
+                return x(d.date);
+            })
+            .y(function(d) {
+                return y2(d.open);
+            });
+
+        var svg = d3.select("body")
+            .append("svg")
+            .attr("width", width + margin.left + margin.right)
+            .attr("height", height + margin.top + margin.bottom)
+            .append("g")
+            .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+       
+
+
+        var data = makeData();
+
+        //Scale(规模) the range of the data
+        x.domain(d3.extent(data, function (d) {
+            return d.date;
+        }));
+        y.domain([0, d3.max(data, function (d) {
+            return d.close;
+        })]);
+
+        y2.domain([0, d3.max(data, function (d) {
+            return d.open;
+        })]);
+
+        //Add the valueline path
+        svg.append("path")
+            .attr("d", valueline(data));
+
+        //绘制线条2
+        svg.append("path")
+            .attr("class", "line")
+            .style("stroke", "red")
+            .attr("d", valueline2(data));
+
+        //Add the X Axis
+        svg.append("g")
+            .attr("class", "x axis")
+            .attr("transform", "translate(0," + height + ")")
+            .call(xAxis)
+            .selectAll('text')
+            .style('text-anchor', 'end')
+            .attr('dx', '-.8em')
+            .attr('dy', '.15em')
+            .attr('transform', 'rotate(-65)');
+
+        //Add the Y Axis
+        svg.append("g")
+            .attr("class", "y axis")
+            .text('time')
+            .call(yAxis);
+
+        //绘制y2坐标轴
+        svg.append("g")
+          .attr("class", "y axis")
+          .attr("transform", "translate(" + width + ", 0)")
+          .style("fill", "blue")
+          .call(y2Axis);
+
+
+
+        ////绘制格栅-x方向
+        //svg.append("g")
+        //    .attr("class", "grid")
+        //    .attr("transform", "translate(0," + height + ")")
+        //    .call(make_x_axis()
+        //        .tickSize(-height, 0, 0)
+        //        .tickFormat("")
+        //    );
+        ////绘制格栅-y方向
+        //svg.append("g")
+        //    .attr("class", "grid")
+        //    .call(make_y_axis()
+        //        .tickSize(-width, 0, 0)
+        //        .tickFormat("")
+        //    );
+
+        //绘制填充区域
+        //svg.append("path")
+        //  .datum(data)
+        //  .attr("class", "area")
+        //  .attr("d", area);
+
+        svg.append('text')
+            .attr('x', (width / 2))
+            .attr('y', (margin.top / 2))
+            .attr('text-anchor', 'middle')
+            .style('font-size', '16px')
+            .style('text-decoration', 'underline')
+            .text('demo');
+
+    </script>
+</body>
+</html>

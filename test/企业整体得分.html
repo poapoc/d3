@@ -1,0 +1,60 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>企业整体得分</title>
+    <link rel="stylesheet" href="d3Factory.css"/>
+    <script type="text/javascript" src="d3.js"></script>
+    <script type="text/javascript" src="d3Factory.js"></script>
+</head>
+    <body>
+        <script>
+
+            var option = {
+                data: [
+                    { name: '第七大道', values: [4.88] },
+                    { name: '行业平均', values: [4.48] },
+                    { name: '最佳雇主', values: [4.94] }
+                ],
+                width: 800,
+                height: 300,
+                container: 'body'
+            };
+
+            var bar = new d3Bar(option);
+            bar.draw();
+
+            option2 = {
+                data: [
+                    { name: '第七大道', values: [4.88, 4.56] },
+                    { name: '行业平均', values: [4.48, 4.89] },
+                    { name: '最佳雇主', values: [4.94, 4.23] }
+                ],
+                legends:['敬业度', '满意度'],
+                width: 800,
+                height: 300,
+                container: 'body'
+            };
+
+            var bar2 = new d3Bar(option2);
+            bar2.draw();
+
+
+            var datas = [
+                { name: '最佳雇主', data: [80.73, 80.74, 77.86, 74.26, 88.45] },
+                { name: '行业平均', data: [75.86, 74.26, 68.83, 54.26, 76.61] },
+                { name: '第七大道', data: [61.80, 51.76, 46.54, 33.54, 59.20] }
+            ];
+
+            var five = new fivePolygon({
+                data: datas,
+                container: 'body',
+                width: 600,
+                height: 420,
+                r: 150
+            });
+            five.draw();
+        </script>
+
+    </body>
+</html>

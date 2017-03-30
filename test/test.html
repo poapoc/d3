@@ -1,0 +1,73 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>test</title>
+    <script type="text/javascript" src="d3.js"></script>
+</head>
+<body>
+    <div style="height: 200px; width: 100%; background-color: #000; color: #fff;">123456</div>
+    <script>
+        var w = 100, h = 100;
+        
+        var randomX = d3.random.normal(w / 2, 80),
+            randomY = d3.random.normal(h / 2, 80),
+            points = d3.range(1000).map(function () {
+                return [randomX(), randomY()];
+            });
+
+
+        d3.select('div').transition().tween("color", function () {
+            var width = d3.interpolateRound(0, 1200);
+            var opacity = d3.interpolateNumber(0, 0.7);
+            var i = d3.interpolateRgb('#fff', '#000');
+            return function (t) {
+                this.style.backgroundColor = i(t);
+                this.style.width = width(t) + 'px';
+                console.log(opacity(t));
+                this.style.opacity = opacity(t);
+            };
+        });
+
+        var width = 960,
+            height = 500,
+            τ = 2 * Math.PI;
+
+        var arc = d3.svg.arc()
+            .innerRadius(180)
+            .outerRadius(240)
+            .startAngle(0);
+
+        var svg = d3.select("body").append("svg")
+            .attr("width", width)
+            .attr("height", height)
+            .append("g")
+            .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");
+
+        var background = svg.append("path")
+            .datum({ endAngle: τ })
+            .style("fill", "#ddd")
+            .attr("d", arc);
+
+        var foreground = svg.append("path")
+            .datum({ endAngle: .127 * τ })
+            .style("fill", "orange")
+            .attr("d", arc);
+
+        setInterval(function () {
+            foreground.transition()
+                .duration(750)
+                .call(arcTween, Math.random() * τ);
+        }, 1500);
+        function arcTween(transition, newAngle) {
+            transition.attrTween("d", function (d) {
+                var interpolate = d3.interpolate(d.endAngle, newAngle);
+                return function (t) {
+                    d.endAngle = interpolate(t);
+                    return arc(d);
+                };
+            });
+        }
+    </script>
+</body>
+</html>

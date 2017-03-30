@@ -1,0 +1,36 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>双饼图</title>
+    <script type="text/javascript" src="d3.js"></script>
+    <script type="text/javascript" src="d3Factory.js"></script>
+    <style type="text/css">
+	</style>
+</head>
+    <body>
+        <div id="dPie"></div>
+        <script type="text/javascript">
+            var dataset = [
+                [
+                    { value: 98.38, valuePrefix: '参与调查', valueSuffix: '%', color: '#4f81bd' },
+                    { value: 19.62, valuePrefix: '未参与调查', valueSuffix: '%', color: '#b9cde5'}
+                    
+                ], [
+                    { value: 88.75, valuePrefix: '有效数据', valueSuffix: '%', color: '#c0504d' },
+                    { value: 48.25, valuePrefix: '无效数据', valueSuffix: '%', color: '#9bbb59' }
+                    
+                ]
+            ];
+            var pie = new doublePie({
+                title: '年龄',
+                data: dataset,
+                width: 800,
+                height: 400,
+                container: '#dPie'
+            });
+            pie.draw();
+        </script>
+
+    </body>
+</html>

@@ -1,0 +1,75 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>满意度敬业度对比</title>
+    <link rel="stylesheet" href="d3Factory.css" />
+    <script type="text/javascript" src="d3.js"></script>
+    <script type="text/javascript" src="d3Factory.js"></script>
+</head>
+    <body>
+        <div style="overflow: hidden;" id="chart1"></div>
+        <script>
+            var source = [
+                { x: 'PMO', y: 80.73, y1: 90.74 },
+                { x: '总裁办', y: 77.86, y1: 84.26 },
+                { x: '人力资源部', y: 72.83, y1: 84.26 },
+                { x: '财务部', y: 76.61, y1: 79.80 },
+                { x: '内审部', y: 71.76, y1: 76.54 },
+                { x: '法务部', y: 81.54, y1: 89.20 },
+                { x: '行政事务部', y: 84.20, y1: 91.20 },
+                { x: 'DDT工作室', y: 77.93, y1: 82.17 },
+                { x: '神曲工作室', y: 79.45, y1: 85.02 },
+                { x: '海神项目组', y: 78.71, y1: 85.07 },
+                { x: '移动业务线', y: 78.35, y1: 84.79 },
+
+                //{ x: 'PM', y: 80.73, y1: 90.74 },
+                //{ x: '总办', y: 77.86, y1: 84.26 },
+                //{ x: '人力源部', y: 72.83, y1: 84.26 },
+                //{ x: '财部', y: 76.61, y1: 79.80 },
+                //{ x: '内部', y: 71.76, y1: 76.54 },
+                //{ x: '法部', y: 81.54, y1: 89.20 },
+                //{ x: '行事务部', y: 84.20, y1: 91.20 },
+                //{ x: 'DD工作室', y: 77.93, y1: 82.17 },
+                //{ x: '神工作室', y: 79.45, y1: 85.02 },
+                //{ x: '海项目组', y: 78.71, y1: 85.07 },
+                //{ x: '移业务线', y: 78.35, y1: 84.79 },
+
+                { x: '引擎中心', y: 82.59, y1: 87.52 }
+            ];
+
+            var lineChart = new lineChart({
+                width: 800,
+                height: 400,
+                data: source,
+                container: '#chart1'
+            });
+            lineChart.draw();
+
+            var data = [
+                { x: 'PMO', y: 80.73 },
+                { x: '总裁办', y: 77.86 },
+                { x: '人力资源部', y: 72.83, isLow: true },
+                { x: '财务部', y: 76.61 },
+                { x: '内审部', y: 71.76, isLow: true },
+                { x: '法务部', y: 81.54 },
+                { x: '行政事务部', y: 84.20 },
+                { x: 'DDT工作室', y: 77.93 },
+                { x: '神曲工作室', y: 79.45 },
+                { x: '海神项目组', y: 78.71 },
+                { x: '移动业务线', y: 78.35 },
+                { x: '引擎中心', y: 82.59 }
+            ];
+
+            var line = new gLine({
+                width:800,
+                height:400,
+                data:data,
+                container:'body'
+            });
+            line.draw();
+
+        </script>
+
+    </body>
+</html>

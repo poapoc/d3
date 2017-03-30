@@ -1,0 +1,81 @@
+﻿<svg width="1000" height="600">
+
+    <script src="d3.js"></script>
+
+    <style>
+        .path {
+            fill: #fff;
+            stroke: red;
+            stroke-width: 3;
+            stroke-dasharray: 0.5;
+            -webkit-animation: 5s test linear;
+            -moz-animation: 5s test infinite;
+            -o-animation: 5s test infinite;
+            animation: 5s test infinite;
+        }
+
+        @-webkit-keyframes test {
+            from {
+                stroke-dasharray: 100;
+                /*stroke-dashoffset: 1000;*/
+            }
+            to {
+                stroke-dasharray: 1;
+                /*stroke-dashoffset: 0;*/
+            }
+        }
+        @keyframes test {
+            from {
+                stroke-dasharray: 0;
+                /*stroke-dashoffset: 1000;*/
+            }
+            to {
+                stroke-dasharray: 100;
+                stroke-dashoffset: 0;
+            }
+        }
+    </style>
+
+    <path class="path" id="animatePath" d="M153 334
+                        C153 384 253 384 253 334
+                        S343 284 353 334
+                        Q394 204 453 334
+                        T553 334
+                        A60 90 0 1 0 553 333
+                        A90 90 0 1 0 553 332 Z">
+    </path>
+
+
+    <rect width="100px" height="100px">
+        <animate attributeName="width" from="50px" to="150px"
+                 dur="1s" begin="0s" id="anim1" />
+        <animate attributeName="width" from="150px" to="100px"
+                 dur="1s" begin="1s" id="anim2" />
+    </rect>
+
+
+    <script>
+        //var path = document.querySelector('path');
+        //var length = path.getTotalLength();
+        //alert(length);
+        //var svg = d3.select('svg').append('g');
+        //svg.append('text')
+        //    .style({
+        //        'fill': '#fff',
+        //        'transform': 'translate(100, 200)'
+        //    })
+        //    .html('<tspan x="100" y="100" fill="#f00">123456</tspan>');
+        //.append('tspan')
+        //.attr('x', 100)
+        //.attr('y', 100)
+        //.attr('fill', '#f00')
+        //.text('部门');
+    </script>
+
+
+</svg>
+
+
+
+
+

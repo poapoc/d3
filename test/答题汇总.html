@@ -1,0 +1,88 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>答题汇总</title>
+    <script type="text/javascript" src="d3.js"></script>
+    <script type="text/javascript" src="d3Factory.js"></script>
+    <style type="text/css">
+	</style>
+</head>
+<body>
+    <div id="dPie"></div>
+    <script type="text/javascript">
+        var datasets = [];
+
+            
+        datasets[0] = [
+            { value: 78.91, name: '20-22岁' },
+            { value: 7.98, name: '23-28岁' },
+            { value: 0.43, name: '29-35岁' },
+            { value: 12.68, name: '35岁以上' }
+        ];
+
+        datasets[1] = [
+            { value: 82.19, name: '普通成员' },
+            { value: 14.25, name: '主管/组长' },
+            { value: 3.42, name: '经理层' },
+            { value: 0.14, name: '总监层及以上' }
+        ];
+
+        datasets[2] = [
+            { value: 35.75, name: '0.5-1年' },
+            { value: 17.38, name: '0.5年以下' },
+            { value: 11.40, name: '1-2年' },
+            { value: 10.54, name: '2-3年' },
+            { value: 18.23, name: '3年以上' },
+            { value: 6.70, name: '试用期内' },
+        ];
+
+        datasets[3] = [
+            { value: 57.41, name: '本科' },
+            { value: 34.62, name: '大专' },
+            { value: 5.41, name: '高中及以上' },
+            { value: 2.56, name: '3硕士及以上' }
+        ];
+
+        var ids = ['pie1', 'pie2', 'pie3', 'pie4'];
+        var titles = ['年龄', '级别', '司龄', '学历'];
+        
+        var dataset = [
+            [
+                { value: 98.38, valuePrefix: '参与调查', valueSuffix: '%', color: '#4f81bd' },
+                { value: 19.62, valuePrefix: '未参与调查', valueSuffix: '%', color: '#b9cde5' }
+
+            ], [
+                { value: 88.75, valuePrefix: '有效数据', valueSuffix: '%', color: '#c0504d' },
+                { value: 48.25, valuePrefix: '无效数据', valueSuffix: '%', color: '#9bbb59' }
+
+            ]
+        ];
+        var pie = new doublePie({
+            title: '年龄',
+            data: dataset,
+            width: 800,
+            height: 400,
+            container: '#dPie'
+        });
+        pie.draw();
+
+
+        var dataset = [
+            { value: 05, name: '20-22岁' },
+            { value: 10, name: '23-28岁' },
+            { value: 15, name: '29-35岁' },
+            { value: 20, name: '35岁以上' }
+        ];
+        var pie = new gPie({
+            title: '年龄',
+            data: dataset,
+            width: 600,
+            height: 240,
+            container: 'body'
+        });
+        pie.draw();
+    </script>
+
+</body>
+</html>

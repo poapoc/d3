@@ -1,0 +1,87 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>test</title>
+    <style>
+        body {
+            font: 12px Arial;
+            text-align: center;
+        }
+
+        path {
+            stroke: #c0504d;
+            stroke-width: 2;
+            fill: none;
+        }
+
+        .axis path,
+        .axis line {
+            fill: none;
+            stroke: grey;
+            stroke-width: 1;
+            shape-rendering: crispEdges;
+        }
+
+        .grid .tick {
+            stroke: lightgrey;
+            opacity: 0.7;
+        }
+
+        .grid path {
+            stroke-width: 0;
+        }
+        .area {
+            fill: lightsteelblue;
+            stroke-width: 0;
+        }
+        svg {
+            margin: 100px auto;
+        }
+    </style>
+    
+
+    <script type="text/javascript" src="d3.js"></script>
+</head>
+    <body>
+        <script>
+            function makeData(parameters) {
+                var arr = [];
+                var today = new Date();
+
+                for (var i = 0; i < 50; i++) {
+                    arr.push({
+                        x: Math.random() * 100,
+                        y: Math.random() * 100
+                    });
+                }
+                return arr;
+            }
+
+
+
+            var data = makeData();
+
+            var margin = { top: 30, right: 180, bottom: 80, left: 120 };
+            var width = 1000 - margin.left - margin.right;
+            var height = 400 - margin.top - margin.bottom;
+
+            var svg = d3.select('body').append('svg')
+                .attr("width", width + margin.left + margin.right)
+                .attr("height", height + margin.top + margin.bottom)
+                .append("g")
+                .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+            var x = d3.scale.linear().range([0, width]),
+                y = d3.scale.linear().range([height, 0]);
+
+            var area = d3.svg.area()
+                .data(data)
+                .x(function (d) { return x(d.x); })
+                .y0(h)
+                .y1(function (d) { return y(d.y); });
+
+        </script>
+
+    </body>
+</html>
